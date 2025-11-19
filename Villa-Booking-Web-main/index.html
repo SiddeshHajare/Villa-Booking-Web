@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book luxurious villas at top destinations. Enjoy private pools, ocean views, and premium amenities." />
+  <title>Luxury Villa Booking</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">Lonavala Villa's</div>
+  <ul>
+    <li><a href="#featured-villas">Villas</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="#reviews">Reviews</a></li> 
+    <li><a href="#booking">Booking</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero">
+  <h1>Experience Luxury Villas</h1>
+  <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</header>
+
+<!-- Featured Villas -->
+<section id="featured-villas">
+  <h2 class="section-title">Featured Villas</h2>
+  <div class="villa-cards">
+    <div class="card">
+      <img src="image1.jpeg" alt="image1.jpeg">
+      <h3>Gold Leaf Villa</h3>
+      <p> Starting at ₹7999/- Per Night</p>
+    </div>
+    <div class="card">
+      <img src="image2.jpeg" alt="image2.jpeg">
+      <h3>Mountain Mist Villa</h3>
+      <p>Starting at ₹7999/- Per Night</p>
+    </div>
+    <div class="card">
+      <img src="Oracle.jpeg" alt="Oracle.jpeg">
+      <h3>Oracle Villa</h3>
+      <p>Starting at ₹6999/- Per Night</p>
+    </div>
+    <div class="card">
+      <img src="image4.jpeg" alt="image4.jpeg">
+      <h3>Luxury Villa</h3>
+      <p>Starting at ₹7999/- Per Night</p>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities -->
+<section id="amenities">
+  <h2 class="section-title">Amenities</h2>
+  <div class="amenities">
+    <div class="card"><i class="fa-solid fa-water-ladder"></i><h3>Private Pool</h3></div>
+    <div class="card"><i class="fa-solid fa-wifi"></i><h3>High-Speed Wi-Fi</h3></div>
+    <div class="card"><i class="fa-solid fa-utensils"></i><h3>Private Chef</h3></div>
+    <div class="card"><i class="fa-solid fa-water"></i><h3>Ocean View</h3></div>
+  </div>
+</section>
+
+<!-- Locations -->
+<section id="locations">
+  <h2 class="section-title">Top Locations</h2>
+  <div class="location-cards">
+    <div class="card">
+      <img src="tiger point (2).png" alt="Tiger Point">
+      <h3>Tiger Point</h3>
+    </div>
+    <div class="card">
+      <img src="lohagad fort.png" alt="lohagad fort">
+      <h3>lohagad fort</h3>
+    </div>
+    <div class="card">
+      <img src="visaour fort.png" alt="Visapur Fort">
+      <h3>Visapur Fort</h3>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews">
+  <h2 class="section-title">Customer Reviews</h2>
+  <div class="review-cards" id="reviewList">
+    <!-- Reviews will load here from Google Sheet -->
+  </div>
+</section>
+
+<!-- Submit Review Form -->
+<section id="submit-review">
+  <h2 class="section-title">Submit Your Review</h2>
+  <form id="reviewForm" class="booking-form">
+    <input type="text" id="reviewName" placeholder="Your Name" required>
+    <textarea id="reviewText" placeholder="Your Review" required></textarea>
+    <button type="submit">Submit Review</button>
+  </form>
+</section>
+
+<!-- Booking Form -->
+<section id="booking">
+  <h2 class="section-title">Book Your Stay</h2>
+  <form class="booking-form" id="bookingForm">
+    <input type="text" id="fullName" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="date" id="checkIn" required>
+    <input type="date" id="checkOut" required>
+    <input type="number" id="guests" placeholder="Number of Guests" required>
+    <button type="submit">Submit Booking</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Lonavala Villas. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy</a> | 
+    <a href="#">Terms</a> | 
+    <a href="https://www.instagram.com/lonavala_stayzz/?igsh=MTBjYXozeDJlYmpjcA%3D%3D&utm_source=qr#">Instagram</a>
+  </p>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="#" class="whatsapp-float" id="whatsappButton">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// WhatsApp booking
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault(); 
+
+    const name = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const checkIn = document.getElementById("checkIn").value;
+    const checkOut = document.getElementById("checkOut").value;
+    const guests = document.getElementById("guests").value;
+
+    const phoneNumber = "917378346548"; 
+
+    const message = `*New Villa Booking Request*%0A
+Full Name: ${name}%0A
+Email: ${email}%0A
+Check-in Date: ${checkIn}%0A
+Check-out Date: ${checkOut}%0A
+Guests: ${guests}`;
+
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    window.open(whatsappURL, "_blank");
+
+    alert("Your booking details are being sent to WhatsApp!");
+});
+</script>
+
+<script>
+// Google Sheets Review Integration
+const scriptURL = "https://script.google.com/macros/s/AKfycbyd_FNqRSFoLKxL1cjjtal10liPogplp3ACZa2OVhURaHeiXBsCLH2KHVrfR4Z58czP/exec"; // Replace with your Google Apps Script Web App URL
+
+// Submit review
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("reviewName").value.trim();
+    const review = document.getElementById("reviewText").value.trim();
+
+    if (name && review) {
+        fetch(scriptURL, {
+            method: "POST",
+            body: new URLSearchParams({ name: name, review: review })
+        })
+        .then(response => response.text())
+        .then(() => {
+            alert("Thank you! Your review has been submitted.");
+            loadReviews(); // Refresh reviews
+            document.getElementById("reviewForm").reset();
+        })
+        .catch(() => alert("Error submitting review."));
+    }
+});
+
+// Load reviews from Google Sheet
+function loadReviews() {
+    fetch(scriptURL)
+    .then(response => response.json())
+    .then(reviews => {
+        const reviewList = document.getElementById("reviewList");
+        reviewList.innerHTML = "";
+        reviews.reverse().forEach(r => {
+            const reviewCard = document.createElement("div");
+            reviewCard.classList.add("card");
+            reviewCard.innerHTML = `<p>“${r.review}”</p><h4>– ${r.name}</h4>`;
+            reviewList.appendChild(reviewCard);
+        });
+    });
+}
+
+// Load reviews on page load
+window.onload = loadReviews;
+</script>
+
+<style>
+/* Extra styling for review section */
+#submit-review textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+#submit-review button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#submit-review button:hover {
+    background-color: #218838;
+}
+</style>
+
+</body>
+</html>
+
